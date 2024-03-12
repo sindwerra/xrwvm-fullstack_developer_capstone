@@ -1,12 +1,7 @@
 # Uncomment the required imports before adding the code
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import logout
-from django.contrib import messages
-from datetime import datetime
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -17,14 +12,9 @@ from .models import CarModel, CarMake
 from .populate import initiate
 from .restapis import get_request, analyze_review_sentiments, post_review
 
-# from .populate import initiate
-
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
-
-
-# Create your views here.
 
 
 def get_cars(request):
@@ -40,6 +30,7 @@ def get_cars(request):
             "CarMake": car_model.car_make.name,
         })
     return JsonResponse({"CarModels": cars})
+
 
 # Create a `login_request` view to handle sign in request
 @csrf_exempt
@@ -82,7 +73,7 @@ def registration(request):
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-    except:
+    except Exception as e:
         # If not, simply log this is a new user
         logger.debug("{} is new user".format(username))
 
@@ -121,7 +112,7 @@ def get_dealer_reviews(request, dealer_id):
             print(r)
             review['sentiment'] = r['sentiment']
         return JsonResponse({"status": 200, 'reviews': reviews})
-    except:
+    except Exception as e:
         return JsonResponse({"status": 401, "message": "Some error happened when request mongoose API."})
 
 # Create a `get_dealer_details` view to render the dealer details
@@ -145,7 +136,7 @@ def add_review(request):
         try:
             response = post_review(data)
             return JsonResponse({"status": 200})
-        except:
+        except Exception as e:
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     else:
         return JsonResponse({"status": 403,"message": "Unauthorized"})
