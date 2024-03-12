@@ -16,21 +16,21 @@ def initiate():
 
     # Create CarModel instances with the corresponding CarMake instances
     car_model_data = [
-      {"name": "Pathfinder", "tp": "SUV", "year": 2023, "car_make": car_make_instances[0]},
-      {"name": "Qashqai", "tp": "SUV", "year": 2023, "car_make": car_make_instances[0]},
-      {"name": "XTRAIL", "tp": "SUV", "year": 2023, "car_make": car_make_instances[0]},
-      {"name": "A-Class", "tp": "SUV", "year": 2023, "car_make": car_make_instances[1]},
-      {"name": "C-Class", "tp": "SUV", "year": 2023, "car_make": car_make_instances[1]},
-      {"name": "E-Class", "tp": "SUV", "year": 2023, "car_make": car_make_instances[1]},
-      {"name": "A4", "tp": "SUV", "year": 2023, "car_make": car_make_instances[2]},
-      {"name": "A5", "tp": "SUV", "year": 2023, "car_make": car_make_instances[2]},
-      {"name": "A6", "tp": "SUV", "year": 2023, "car_make": car_make_instances[2]},
-      {"name": "Sorrento", "tp": "SUV", "year": 2023, "car_make": car_make_instances[3]},
-      {"name": "Carnival", "tp": "SUV", "year": 2023, "car_make": car_make_instances[3]},
-      {"name": "Cerato", "tp": "Sedan", "year": 2023, "car_make": car_make_instances[3]},
-      {"name": "Corolla", "tp": "Sedan", "year": 2023, "car_make": car_make_instances[4]},
-      {"name": "Camry", "tp": "Sedan", "year": 2023, "car_make": car_make_instances[4]},
-      {"name": "Kluger", "tp": "SUV", "year": 2023, "car_make": car_make_instances[4]},
+        {"name": "Pathfinder", "tp": "SUV", "year": 2023, "car_make": car_make_instances[0]},
+        {"name": "Qashqai", "tp": "SUV", "year": 2023, "car_make": car_make_instances[0]},
+        {"name": "XTRAIL", "tp": "SUV", "year": 2023, "car_make": car_make_instances[0]},
+        {"name": "A-Class", "tp": "SUV", "year": 2023, "car_make": car_make_instances[1]},
+        {"name": "C-Class", "tp": "SUV", "year": 2023, "car_make": car_make_instances[1]},
+        {"name": "E-Class", "tp": "SUV", "year": 2023, "car_make": car_make_instances[1]},
+        {"name": "A4", "tp": "SUV", "year": 2023, "car_make": car_make_instances[2]},
+        {"name": "A5", "tp": "SUV", "year": 2023, "car_make": car_make_instances[2]},
+        {"name": "A6", "tp": "SUV", "year": 2023, "car_make": car_make_instances[2]},
+        {"name": "Sorrento", "tp": "SUV", "year": 2023, "car_make": car_make_instances[3]},
+        {"name": "Carnival", "tp": "SUV", "year": 2023, "car_make": car_make_instances[3]},
+        {"name": "Cerato", "tp": "Sedan", "year": 2023, "car_make": car_make_instances[3]},
+        {"name": "Corolla", "tp": "Sedan", "year": 2023, "car_make": car_make_instances[4]},
+        {"name": "Camry", "tp": "Sedan", "year": 2023, "car_make": car_make_instances[4]},
+        {"name": "Kluger", "tp": "SUV", "year": 2023, "car_make": car_make_instances[4]},
     ]
 
     for data in car_model_data:
