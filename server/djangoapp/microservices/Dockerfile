@@ -1,4 +1,4 @@
-FROM python:3.9.18-slim-bookworm
+fFROM python:3.9.18-slim-bookworm
 
 
 WORKDIR /python-docker
