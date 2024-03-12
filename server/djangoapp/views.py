@@ -59,8 +59,6 @@ def logout_request(request):
 # Create a `registration` view to handle sign up request
 @csrf_exempt
 def registration(request):
-    context = {}
-
     data = json.loads(request.body)
     username = data['userName']
     password = data['password']
@@ -68,19 +66,25 @@ def registration(request):
     last_name = data['lastName']
     email = data['email']
     username_exist = False
-    email_exist = False
     try:
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-    except Exception as e:
+    except Exception as err:
         # If not, simply log this is a new user
+        print(f"Unexpected {err=}, {type(err)=}")
         logger.debug("{} is new user".format(username))
 
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        user = User.objects.create_user(
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            password=password,
+            email=email
+        )
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
@@ -112,7 +116,8 @@ def get_dealer_reviews(request, dealer_id):
             print(r)
             review['sentiment'] = r['sentiment']
         return JsonResponse({"status": 200, 'reviews': reviews})
-    except Exception as e:
+    except Exception as err:
+        print(f"Unexpected {err=}, {type(err)=}")
         return JsonResponse({"status": 401, "message": "Some error happened when request mongoose API."})
 
 # Create a `get_dealer_details` view to render the dealer details
@@ -125,7 +130,8 @@ def get_dealer_details(request, dealer_id):
     try:
         dealer = get_request(end_point)
         return JsonResponse({"status": 200, 'dealer': dealer})
-    except:
+    except Exception as err:
+        print(f"Unexpected {err=}, {type(err)=}")
         return JsonResponse({"status": 401, "message": "Some error happened when request mongoose API."})
 
 
@@ -134,9 +140,10 @@ def add_review(request):
     if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200})
-        except Exception as e:
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     else:
-        return JsonResponse({"status": 403,"message": "Unauthorized"})
+        return JsonResponse({"status": 403, "message": "Unauthorized"})
